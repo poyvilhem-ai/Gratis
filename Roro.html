@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-FAR Chat</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.app{
+    width:390px;
+    max-width:100%;
+    height:92vh;
+    background:#111827;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 0 20px rgba(0,255,255,.25);
+}
+
+.header{
+    background:#06b6d4;
+    color:#fff;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.title{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.apk{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#fff;
+    color:#06b6d4;
+    border:none;
+    padding:8px 12px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.apk img{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+}
+
+.chat{
+    flex:1;
+    background:#1e293b;
+    padding:15px;
+    overflow-y:auto;
+}
+
+.msg{
+    background:#334155;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:15px;
+    margin-bottom:10px;
+    max-width:80%;
+}
+
+.me{
+    background:#06b6d4;
+    margin-left:auto;
+}
+
+.footer{
+    display:flex;
+    padding:10px;
+    background:#111827;
+}
+
+.footer input{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:15px;
+    outline:none;
+}
+
+.footer button{
+    margin-left:10px;
+    border:none;
+    background:#06b6d4;
+    color:white;
+    padding:12px 18px;
+    border-radius:15px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop autoplay>
+    <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<div class="app">
+
+<div class="header">
+
+<div class="title">X-FAR Chat</div>
+
+<button class="apk" onclick="joinGroup()">
+<img src="icon.jpg" alt="Icon">
+APK Gratis
+</button>
+
+</div>
+
+<div class="chat" id="chat">
+
+<div class="msg">
+Selamat datang di X-FAR Chat 👋
+</div>
+
+</div>
+
+<div class="footer">
+
+<input type="text" id="pesan" placeholder="Ketik pesan...">
+
+<button onclick="kirim()">Kirim</button>
+
+</div>
+
+</div>
+
+<script>
+const audio=document.getElementById("bgm");
+
+document.body.addEventListener("click",()=>{
+    audio.play().catch(()=>{});
+},{once:true});
+
+function kirim(){
+
+let input=document.getElementById("pesan");
+
+if(input.value.trim()=="") return;
+
+let chat=document.getElementById("chat");
+
+chat.innerHTML+=`
+<div class="msg me">${input.value}</div>
+`;
+
+chat.scrollTop=chat.scrollHeight;
+
+input.value="";
+
+}
+
+function joinGroup(){
+window.open(
+"https://chat.whatsapp.com/LumF4iWX3iI1kbMym1eCv4?s=cl&p=a&mlu=2",
+"_blank"
+);
+}
+</script>
+
+</body>
+</html>
